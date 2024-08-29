@@ -1,0 +1,20 @@
+def isUnival(node,data):
+    if not node:
+        return True
+    if node.data==data:
+        return isUnival(node.left,data) and isUnival(node.right,data)
+
+def countUnivalTrees(root):
+    
+    # Write your code here.
+    # This function returns the updated root.
+    if not root:
+        return 0
+    ctr=0
+    left=countUnivalTrees(root.left)
+    right=countUnivalTrees(root.right)
+    ctr=left+right
+    if isUnival(root,root.data):
+        ctr+=1
+    return ctr
+    pass
