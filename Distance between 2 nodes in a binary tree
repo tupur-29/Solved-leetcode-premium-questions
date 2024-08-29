@@ -1,0 +1,19 @@
+class Solution:
+    def findDist(self,root,a,b):
+        def dist(root,val,path):
+            if root.data==val:
+                return True
+            
+            if root.left and dist(root.left,val,path):
+                path+='L'
+            elif root.right and dist(root.right,val,path):
+                path+='R'
+            return path
+            
+        ap,bp=[],[]
+        dist(root,a,ap)
+        dist(root,b,bp)
+        while len(ap) and len(bp) and ap[-1]==bp[-1]:
+            ap.pop()
+            bp.pop()
+        return len(ap)+len(bp)
